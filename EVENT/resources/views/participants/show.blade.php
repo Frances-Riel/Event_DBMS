@@ -8,16 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <title>Post</title>
+    <title>Participant</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-warning">
         <div class="container-fluid">
-            <a class="navbar-brand h1" href={{ route('posts.index') }}>CRUDPosts</a>
+            <a class="navbar-brand h1" href={{ route('participants.index') }}>CRUD - PARTICIPANT</a>
             <div class="justify-end ">
                 <div class="col ">
-                    <a class="btn btn-sm btn-success" href={{ route('posts.create') }}>Add Post</a>
+                    <a class="btn btn-sm btn-success" href={{ route('participants.create') }}>Add Participants</a>
                 </div>
             </div>
     </nav>
@@ -26,14 +26,20 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">{{ $post->title }}</h5>
+                    <h5 class="card-title">{{ $part->name }}</h5>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ $post->body }}</p>
+                    <p class="card-text">{{ $part->age }}</p>
+                </div>
+                <div class="card-header">
+                    <h5 class="card-title">{{ $part->email }}</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ $part->address }}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                    <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+                    <a href="{{ route('participants.edit', $post->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <form action="{{ route('participants.destroy', $post->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>

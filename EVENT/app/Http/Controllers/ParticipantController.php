@@ -11,9 +11,9 @@ class ParticipantController extends Controller
      */
     public function index()
     {
+
         $parts = Participant::all();
-        return view('participants.index', compact('parts'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('participants.index', compact('parts'));
     }
 
     /**
@@ -22,8 +22,10 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
+            'name' => 'required',
+            'age' => 'required',
+            'email' => 'required',
+            'address' => 'required',
           ]);
           Participant::create($request->all());
           return redirect()->route('participants.index')

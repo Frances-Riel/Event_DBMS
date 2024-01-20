@@ -9,6 +9,20 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <title>Participants</title>
+
+    <style>
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            background-color: #f8f9fa;
+        }
+
+        .btn-sm {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,39 +37,43 @@
     </nav>
     <div class="container mt-5">
         <div class="row">
-            @foreach ($parts as $part)
-                <div class="col-sm">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">{{ $part->name }}</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">{{ $part->age }}</p>
-                        </div>
-                        <div class="card-header">
-                            <h5 class="card-title">{{ $part->email }}</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">{{ $part->address }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <a href="{{ route('participants.edit', $part->id) }}"
-                                        class="btn btn-primary btn-sm">Edit</a>
-                                </div>
-                                <div class="col-sm">
-                                    <form action="{{ route('participants.destroy', $part->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                    </form>
+            @if(isset($parts) && count($parts) > 0)
+                @foreach ($parts as $part)
+                    <div class="col-sm">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">{{ $part->name }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ $part->age }}</p>
+                            </div>
+                            <div class="card-header">
+                                <h5 class="card-title">{{ $part->email }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ $part->address }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <a href="{{ route('participants.edit', $part->id) }}"
+                                            class="btn btn-primary btn-sm">Edit</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <form action="{{ route('participants.destroy', $part->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            @else
+                <p>No participants found.</p>
+            @endif
         </div>
     </div>
 </body>
