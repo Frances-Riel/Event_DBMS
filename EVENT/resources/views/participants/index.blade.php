@@ -39,25 +39,19 @@
         <div class="row">
             @if(isset($parts) && count($parts) > 0)
                 @foreach ($parts as $part)
-                    <div class="col-sm">
+                    <div class="col-sm-4 mb-4">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-body">
                                 <h5 class="card-title">{{ $part->name }}</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">{{ $part->age }}</p>
-                            </div>
-                            <div class="card-header">
-                                <h5 class="card-title">{{ $part->email }}</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">{{ $part->address }}</p>
+                                <p class="card-text"><strong>Age:</strong> {{ $part->age }}</p>
+                                <p class="card-text"><strong>Email:</strong> {{ $part->email }}</p>
+                                <p class="card-text"><strong>Address:</strong> {{ $part->address }}</p>
                             </div>
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-sm">
                                         <a href="{{ route('participants.edit', $part->id) }}"
-                                            class="btn btn-primary btn-sm">Edit</a>
+                                           class="btn btn-primary btn-sm">Edit</a>
                                     </div>
                                     <div class="col-sm">
                                         <form action="{{ route('participants.destroy', $part->id) }}" method="post">
@@ -76,6 +70,7 @@
             @endif
         </div>
     </div>
+
 </body>
 
 </html>

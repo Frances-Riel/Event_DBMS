@@ -25,7 +25,7 @@
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
                 <h3>Update Participant</h3>
-                <form action="{{ route('participants.update', $post->id) }}" method="post">
+                <form action="{{ route('participants.update', $part->id) }}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
