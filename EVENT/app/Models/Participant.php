@@ -18,6 +18,6 @@ class Participant extends Model
         'age',
         'email',
         'address',
-        'eventID',
+        'Event_ID',
     ];
 }

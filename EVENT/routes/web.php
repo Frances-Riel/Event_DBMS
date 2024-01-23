@@ -24,3 +24,5 @@ Route::get('/', function () {
 Route::resource('events',EventController::class);
 Route::post('/events/storePart', [EventController::class, 'storeParticipant'])->name('events.storeParticipant');
 Route::resource('participants',ParticipantController::class);
+Route::delete('events/participants/{id}', [EventController::class, 'destroyParticipant'])->name('events.destroyParticipant');
+Route::put('events/participants/{id}', [EventController::class, 'updateParticipant'])->name('events.updateParticipant');

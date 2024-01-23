@@ -46,15 +46,12 @@ class EventController extends Controller
     public function show(string $id)
     {
         $events = Event::find($id);
-        $parts = $events->participants;
+        $parts = Participant::where('Event_ID', $events->id)->get();
         // dd($parts);
 
         return view('events.show', compact('parts','events'));
     }
-    public function participants()
-    {
-        return $this->hasMany(Participant::class, 'Event_ID', 'id');
-    }
+
     // routes functions
     /**
      * Show the form for creating a new post.
@@ -73,7 +70,26 @@ class EventController extends Controller
 
         return view('events.edit', compact('events'));
     }
+    public function editParticipant($id)
+    {
+        $parts = Participant::find($id);
 
+        return view('events.editParticipant', compact('events'));
+    }
+
+    public function updateParticipant(Request $request, string $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'age' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+        ]);
+
+        $parts = Participant::find($id);
+        $parts->update($request->all());
+        return redirect()->back()->with('success', 'Participant updated successfully.');
+    }
 
     /**
      * Update the specified resource in storage.
@@ -103,5 +119,12 @@ class EventController extends Controller
 
         return redirect()->route('events.index')
             ->with('success', 'Participant deleted successfully');
+    }
+    public function destroyParticipant(string $id)
+    {
+        $parts = Participant::find($id);
+        $parts->delete();
+
+        return redirect()->back()->with('success', 'Participant deleted successfully');
     }
 }
