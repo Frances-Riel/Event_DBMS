@@ -38,7 +38,7 @@
                     <p class="card-text">{{ $part->address }}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('participants.edit', $post->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{ route('participants.edit', $part->id) }}" class="btn btn-primary btn-sm">Edit</a>
                     <form action="{{ route('participants.destroy', $post->id) }}" method="post">
                         @csrf
                         @method('DELETE')

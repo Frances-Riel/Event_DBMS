@@ -12,9 +12,11 @@ class Event extends Model
     use HasFactory;
 
 	protected $connection = 'mongodb';
-    	protected $collection = 'item_lists';
-    	protected $guarded=[];
+    protected $collection = 'Events';
+    protected $guarded=[];
     protected $fillable = [
         'name',
+        'date',
+        'location',
     ];
 }

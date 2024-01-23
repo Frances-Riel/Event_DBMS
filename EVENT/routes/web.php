@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ParticipantController;
 
 
@@ -14,7 +15,11 @@ use App\Http\Controllers\ParticipantController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('/', function () {
+//     return view('participants.index');
+// });
 Route::get('/', function () {
-    return view('participants.index');
+    return view('events.index');
 });
+Route::resource('events',EventController::class);
 Route::resource('participants',ParticipantController::class);

@@ -17,6 +17,10 @@ return new class extends Migration
             $table->integer('age');
             $table->string('email')->unique();
             $table->string('address');
+            $table->unsignedBigInteger('event');
+
+            $table->foreign('event')->references('id')->on('events')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

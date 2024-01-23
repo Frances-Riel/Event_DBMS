@@ -8,48 +8,43 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <title>Create Participant</title>
+    <title>Create Event</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-warning">
         <div class="container-fluid">
-            <a class="navbar-brand h1" href={{ route('participants.index') }}>CRUD - PARTICIPANT</a>
+            <a class="navbar-brand h1" href={{ route('events.index') }}>CRUD - Event</a>
             <div class="justify-end ">
                 <div class="col ">
-                    <a class="btn btn-sm btn-success" href={{ route('participants.create') }}>Add Participant</a>
+                    <a class="btn btn-sm btn-success" href={{ route('events.create') }}>Add Event</a>
                 </div>
             </div>
+        </div>
     </nav>
 
     <div class="container h-100 mt-5">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
-                <h3>Add a Participant</h3>
-                <form action="{{ route('participants.store') }}" method="post">
+                <h3>Add an Event</h3>
+                <form action="{{ route('events.store') }}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
+                        <input type="text" class="form-control" id="name" name="name" required placeholder="Enter event name">
                     </div>
 
                     <div class="form-group">
-                        <label for="age">Age</label>
-                        <input type="number" class="form-control" id="age" name="age" required placeholder="Enter your age">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" required placeholder="Enter your email">
+                        <label for="location">Location</label>
+                        <input type="text" class="form-control" id="location" name="location" required placeholder="Enter event location">
                     </div>
-
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" required placeholder="Enter your address">
-                    </div>
-
                     <br>
-                    <button type="submit" class="btn btn-primary">Create Participant</button>
+                    <button type="submit" class="btn btn-primary">Create Event</button>
                 </form>
             </div>
         </div>

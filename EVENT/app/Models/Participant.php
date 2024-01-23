@@ -11,13 +11,13 @@ class Participant extends Model
 {
     use HasFactory;
     protected $connection = 'mongodb';
-    	protected $collection = 'item_lists';
-    	protected $guarded=[];
-
+    protected $collection = 'Participants';
+    protected $guarded=[];
     protected $fillable = [
         'name',
         'age',
         'email',
         'address',
+        'eventID',
     ];
 }
