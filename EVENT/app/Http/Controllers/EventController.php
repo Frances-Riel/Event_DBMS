@@ -24,18 +24,21 @@ class EventController extends Controller
             ->with('success','Participant created successfully.');
     }
 
-    public function storePart(Request $request)
+    public function storeParticipant(Request $request, Event $event)
     {
         $request->validate([
             'name' => 'required',
             'age' => 'required',
             'email' => 'required',
             'address' => 'required',
-          ]);
-          Part::create($request->all());
-          return redirect()->route('events.index')
-            ->with('success','Participant created successfully.');
+            'Event_ID' => 'required',
+        ]);
+
+        Participant::create($request->all());
+
+        return redirect()->back()->with('success', 'Participant created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -43,11 +46,15 @@ class EventController extends Controller
     public function show(string $id)
     {
         $events = Event::find($id);
-        $parts = Participant::where('event_id', $events)->get();
+        $parts = $events->participants;
+        // dd($parts);
 
-        return view('events.show', compact('events','parts'));
+        return view('events.show', compact('parts','events'));
     }
-
+    public function participants()
+    {
+        return $this->hasMany(Participant::class, 'Event_ID', 'id');
+    }
     // routes functions
     /**
      * Show the form for creating a new post.

@@ -22,4 +22,5 @@ Route::get('/', function () {
     return view('events.index');
 });
 Route::resource('events',EventController::class);
+Route::post('/events/storePart', [EventController::class, 'storeParticipant'])->name('events.storeParticipant');
 Route::resource('participants',ParticipantController::class);

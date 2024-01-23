@@ -43,25 +43,7 @@
     </div>
     <div class="container h-100 mt-5">
         <div class="row h-100 justify-content-center align-items-center">
-
-            <table>
-                @foreach($parts as $part)
-                <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                </tr>
-                <tr>
-                    <td>{{ $parts->name }}</td>
-                    <td>{{ $parts->age }}</td>
-                    <td>{{ $parts->email }}</td>
-                    <td>{{ $parts->address }}</td>
-                </tr>
-                @endforeach
-            </table>
-
-            <form action="{{ route('events.storePart') }} " method="POST">
+            <form action="{{ route('events.storeParticipant', ['event' => $events->id]) }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -78,9 +60,35 @@
                 <div class="mb-3">
                     <label for="address" class="form-label">Address</label>
                     <input type="text" class="form-control" id="address" name="address" required>
+                    <input type="number" class="form-control" id="Event_ID" name="Event_ID" value="{{ $events->id }}" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">Add Participant</button>
             </form>
+            {{-- <pre>
+                {{ print_r($parts) }}
+            </pre> --}}
+            <table>
+                @if($parts)
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                    </tr>
+                    @foreach($parts as $part)
+                        <tr>
+                            <td>{{ $part->name }}</td>
+                            <td>{{ $part->age }}</td>
+                            <td>{{ $part->email }}</td>
+                            <td>{{ $part->address }}</td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="4">No participants found</td>
+                    </tr>
+                @endif
+            </table>
         </div>
     </div>
 </body>
